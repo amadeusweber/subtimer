@@ -54,9 +54,12 @@ def modify_srt_file(path, fps_source, fps_output):
         )
 
     # Save subtitles
+    root, filename = os.path.split(path)
+    filename = list(filename.split('.'))
+    filename.insert(2 if filename[0].strip() == '' else 1, f"fps{fps_output}")
     write_srt_file(
         subtitles,
-        os.path.splitext(path)[0] + '.fps' + str(fps_output) + '.srt'
+        os.path.join(root, '.'.join(filename))
     )
 
 
