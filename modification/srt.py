@@ -66,7 +66,13 @@ def modify_srt_file(path, fps_source, fps_output):
 
 def modify_srt_files(source, file_filter, fps_source, fps_output):
     # scan for files
-    srt_files = tuple(get_files_by_extension(source, EXTENSION, file_filter))
+    processed_indicator = f".fps{str(fps_output)}"
+    srt_files = tuple(
+        file
+        for file in get_files_by_extension(source, EXTENSION, file_filter)
+        if processed_indicator not in file
+    )
+    # remove files 
     logger.info('Found files: \n - ' + '\n - '.join(srt_files))
 
     # process files
