@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 # Constants
 CONF = 'config.conf'
 DIRECTORY = './examples/'
-FILE_FILTER = 'forced'
+FILE_FILTER = 'ger'
 FPS_SOURCE = 23.976
 FPS_OUTPUT = 25.0
 
