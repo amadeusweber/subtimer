@@ -24,14 +24,13 @@ def main(
         conf:str=CONF,
         *args, **kwargs):
     # loading config
-    logging.basicConfig(level=logging.INFO)
-    logger.info('Loading config from %s', conf)
     config = configparser.ConfigParser()
     config.read(conf)
     
     # logging setup
     logging.basicConfig(level=config['Logging']['level'])
     logger.info('Set log-level to %s', config['Logging']['level'])
+    logger.info('Loaded config from \'%s\'', conf)
     
     modify_srt_files(directory, file_filter, fps_source, fps_output)
 

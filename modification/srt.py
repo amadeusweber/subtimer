@@ -41,12 +41,10 @@ def write_srt_file(subtitles:list, path):
 def modify_srt_file(path, fps_source, fps_output):
     logger.info(f"Processing '{path}'")
     subtitles = tuple(load_srt_file(path))
-    logger.info(subtitles[0].start)
-    logger.info(time_total_seconds(subtitles[0].start))
-    logger.info(time_from_seconds(time_total_seconds(subtitles[0].start)))
 
     # Multipy start and end times by conversion factor
     factor = fps_source / fps_output
+    logger.info(f"Scale timing by {factor}")
     for subtitle in subtitles:
         subtitle.start = time_from_seconds(
             time_total_seconds(subtitle.start) * factor
