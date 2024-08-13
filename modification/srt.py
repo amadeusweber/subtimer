@@ -64,9 +64,9 @@ def modify_srt_file(path, fps_source, fps_output):
 
     
 
-def modify_srt_files(source, fps_source, fps_output):
+def modify_srt_files(source, file_filter, fps_source, fps_output):
     # scan for files
-    srt_files = tuple(get_files_by_extension(source, EXTENSION))
+    srt_files = tuple(get_files_by_extension(source, EXTENSION, file_filter))
     logger.info('Found files: \n - ' + '\n - '.join(srt_files))
 
     # process files

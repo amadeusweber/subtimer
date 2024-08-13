@@ -7,11 +7,12 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Functions
-def get_files_by_extension(directory:str, extension:str) -> Iterable[str]:
+def get_files_by_extension(directory:str, extension:str, file_filter:str='') -> Iterable[str]:
     extension = extension.lower()
     for file in os.listdir(directory):
         if os.path.splitext(file)[-1].lower() == extension:
-            yield os.path.join(directory, file)
+            if file_filter in file:
+                yield os.path.join(directory, file)
 
 def read_text_file(path:str) -> str:
     with open(path, mode='r') as file:

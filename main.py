@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 # Constants
 CONF = 'config.conf'
 DIRECTORY = './examples/'
+FILE_FILTER = 'forced'
 FPS_SOURCE = 23.976
 FPS_OUTPUT = 25.0
 
@@ -17,6 +18,7 @@ FPS_OUTPUT = 25.0
 # Program
 def main(
         directory:str=DIRECTORY,
+        file_filter:str=FILE_FILTER,
         fps_source:float=FPS_SOURCE,
         fps_output:float=FPS_OUTPUT,
         conf:str=CONF,
@@ -31,7 +33,7 @@ def main(
     logging.basicConfig(level=config['Logging']['level'])
     logger.info('Set log-level to %s', config['Logging']['level'])
     
-    modify_srt_files(directory, fps_source, fps_output)
+    modify_srt_files(directory, file_filter, fps_source, fps_output)
 
     return
 
@@ -41,6 +43,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--conf', type=str, default=CONF)
     parser.add_argument('-fs', '--fps-source', type=float, default=FPS_SOURCE)
     parser.add_argument('-fo', '--fps-output', type=float, default=FPS_OUTPUT)
+    parser.add_argument('-f', '--file-filter', type=str, default=FILE_FILTER)
     parser.add_argument('--directory', type=str, default=DIRECTORY)
     
     exit(main(**vars(parser.parse_args())))
